@@ -8,8 +8,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import kodlamaio.hrms.business.abstracts.AuthService;
 import kodlamaio.hrms.core.utilites.results.Result;
-import kodlamaio.hrms.entities.concretes.Candidate;
-import kodlamaio.hrms.entities.concretes.User;
 import kodlamaio.hrms.entities.dtos.CandidateForRegisterDto;
 import kodlamaio.hrms.entities.dtos.EmployerForRegisterDto;
 

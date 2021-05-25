@@ -1,5 +1,8 @@
 package kodlamaio.hrms.core.utilites.email;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public class MailManager implements MailService {
 
 	@Override

@@ -8,14 +8,12 @@ import kodlamaio.hrms.business.abstracts.CandidateService;
 import kodlamaio.hrms.business.abstracts.EmployerService;
 import kodlamaio.hrms.business.abstracts.UserService;
 import kodlamaio.hrms.core.utilites.adapters.VerificationService;
-import kodlamaio.hrms.core.utilites.adapters.mernis.MernisVerificationAdapter;
 import kodlamaio.hrms.core.utilites.email.MailService;
 import kodlamaio.hrms.core.utilites.results.ErrorResult;
 import kodlamaio.hrms.core.utilites.results.Result;
 import kodlamaio.hrms.core.utilites.results.SuccessResult;
 import kodlamaio.hrms.entities.concretes.Candidate;
 import kodlamaio.hrms.entities.concretes.Employer;
-import kodlamaio.hrms.entities.concretes.User;
 import kodlamaio.hrms.entities.dtos.CandidateForRegisterDto;
 import kodlamaio.hrms.entities.dtos.EmployerForRegisterDto;
 import kodlamaio.hrms.entities.dtos.UserForMernisValidateDto;
@@ -56,11 +54,13 @@ public class AuthManager implements AuthService {
 		 	userForMernisValidateDto.setLastName(candidateForRegisterDto.getLastName());
 		 	userForMernisValidateDto.setBirthYear(candidateForRegisterDto.getBirthYear());
 		 	userForMernisValidateDto.setIdentityNumber(candidateForRegisterDto.getIdentityNumber());
+		 	
 		 	if(!this.verificationService.validate(userForMernisValidateDto)) {
 		 		return new ErrorResult("Mernis validate failed");
 		 	}
 		 
 		    this.mailService.send(candidateForRegisterDto.getEmail(),"please verify");
+		    
 		 	Candidate candidate = new Candidate();  
 		 	candidate.setFirstName(candidateForRegisterDto.getFirstName());
 		 	candidate.setLastName(candidateForRegisterDto.getLastName());
