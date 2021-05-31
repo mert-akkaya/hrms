@@ -1,5 +1,7 @@
 package kodlamaio.hrms.api.controllers;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -22,11 +24,11 @@ public class AuthController {
 		this.authService = authService;
 	}
 	@PostMapping("/registerforcandidate")
-	public Result registerForCandidate(@RequestBody CandidateForRegisterDto candidateForRegisterDto) {
+	public Result registerForCandidate(@Valid @RequestBody CandidateForRegisterDto candidateForRegisterDto) {
 		return this.authService.registerForCandidate(candidateForRegisterDto);
 	}
 	@PostMapping("/registerforemployer")
-	public Result registerForEmployer(@RequestBody EmployerForRegisterDto employerForRegisterDto) {
+	public Result registerForEmployer(@Valid @RequestBody EmployerForRegisterDto employerForRegisterDto) {
 		return this.authService.registerForEmployer(employerForRegisterDto);
 	}
 }

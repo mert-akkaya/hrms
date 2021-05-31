@@ -30,7 +30,7 @@ public class JobTitlesController {
 		return this.jobTitleService.getAll();
 	}
 	
-	@PostMapping("/add")
+	@PostMapping("/add") 
 	public Result add(@RequestBody JobTitle jobTitle) {
 		return this.jobTitleService.add(jobTitle);
 	}

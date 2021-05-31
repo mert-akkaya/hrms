@@ -13,6 +13,5 @@ public interface CandidateService {
 	
 	Result add(Candidate candidate);
 	
-	DataResult<Candidate> getByIdentityNumber(String identityNumber);
 	
 }
