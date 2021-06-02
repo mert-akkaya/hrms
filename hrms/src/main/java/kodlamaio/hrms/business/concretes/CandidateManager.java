@@ -9,7 +9,6 @@ import kodlamaio.hrms.business.abstracts.CandidateService;
 import kodlamaio.hrms.business.abstracts.UserService;
 import kodlamaio.hrms.business.constants.Messages;
 import kodlamaio.hrms.core.utilites.results.DataResult;
-import kodlamaio.hrms.core.utilites.results.ErrorDataResult;
 import kodlamaio.hrms.core.utilites.results.ErrorResult;
 import kodlamaio.hrms.core.utilites.results.Result;
 import kodlamaio.hrms.core.utilites.results.SuccessDataResult;

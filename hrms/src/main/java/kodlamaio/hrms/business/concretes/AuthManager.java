@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 import kodlamaio.hrms.business.abstracts.AuthService;
 import kodlamaio.hrms.business.abstracts.CandidateService;
 import kodlamaio.hrms.business.abstracts.EmployerService;
-import kodlamaio.hrms.business.abstracts.UserService;
 import kodlamaio.hrms.core.utilites.adapters.VerificationService;
 import kodlamaio.hrms.core.utilites.email.MailService;
 import kodlamaio.hrms.core.utilites.results.ErrorResult;

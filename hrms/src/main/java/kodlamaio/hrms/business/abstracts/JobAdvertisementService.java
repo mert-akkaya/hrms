@@ -2,8 +2,6 @@ package kodlamaio.hrms.business.abstracts;
 
 import java.util.List;
 
-import org.springframework.data.domain.Sort;
-
 import kodlamaio.hrms.core.utilites.results.DataResult;
 import kodlamaio.hrms.core.utilites.results.Result;
 import kodlamaio.hrms.entities.concretes.JobAdvertisement;
