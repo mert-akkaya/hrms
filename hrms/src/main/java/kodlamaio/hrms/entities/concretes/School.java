@@ -31,7 +31,7 @@ public class School {
 	@JoinColumn(name = "curriculum_vitae_id")
 	private CurriculumVitae curriculumVitae ;
 	
-	@Column(name="name")
+	@Column(name="name") 
 	private String name;
 	
 	@Column(name="department")

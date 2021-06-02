@@ -10,6 +10,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -44,6 +46,7 @@ public class Candidate extends User {
 	private int birthYear;
 	
 	@OneToMany(mappedBy = "candidate")
+	@JsonIgnore
 	private List<CurriculumVitae> curriculumVitaes;
 	
 	 public Candidate(String email,String password,String firstName, String lastName, String identityNumber, int  birthYear) {

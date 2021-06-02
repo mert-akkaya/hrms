@@ -12,6 +12,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -44,12 +46,19 @@ public class CurriculumVitae {
 	@Column(name="cover_letter")
 	private String coverLetter;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "curriculumVitae")
 	private List<School> schools;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "curriculumVitae")
 	private List<WorkExperience> workExperiences;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "curriculumVitae")
 	private List<Abilitiy> abilities;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "curriculumVitae")
+	private List<ForeignLanguage> foreignLanguages;
 }

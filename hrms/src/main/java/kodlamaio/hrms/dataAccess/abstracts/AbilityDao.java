@@ -2,8 +2,8 @@ package kodlamaio.hrms.dataAccess.abstracts;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import kodlamaio.hrms.entities.concretes.School;
+import kodlamaio.hrms.entities.concretes.Abilitiy;
 
-public interface AbilityDao extends JpaRepository<School, Integer> {
+public interface AbilityDao extends JpaRepository<Abilitiy, Integer> {
 
 }
