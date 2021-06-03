@@ -1,8 +1,8 @@
 package kodlamaio.hrms.api.controllers;
 
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -10,8 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import kodlamaio.hrms.business.abstracts.WorkExperienceService;
-import kodlamaio.hrms.core.utilites.results.DataResult;
-import kodlamaio.hrms.core.utilites.results.Result;
 import kodlamaio.hrms.entities.concretes.WorkExperience;
 
 @RestController
@@ -26,17 +24,29 @@ public class WorkExperiencesController {
 	}
 	
 	@GetMapping("/getall")
-	public DataResult<List<WorkExperience>> getAll(){
-		return this.workExperienceService.getAll();
+	public ResponseEntity<?> getAll(){
+		var result = this.workExperienceService.getAll();
+		if (!result.isSuccess()){
+            return ResponseEntity.badRequest().body(result);
+        }
+        return ResponseEntity.ok(result);
 	}
 	
 	@PostMapping("/add")
-	public Result add(@RequestBody WorkExperience workExperience) {
-		return this.workExperienceService.add(workExperience);
+	public ResponseEntity<?> add(@RequestBody WorkExperience workExperience) {
+		var result = this.workExperienceService.add(workExperience);
+		if (!result.isSuccess()){
+            return ResponseEntity.badRequest().body(result);
+        }
+        return ResponseEntity.ok(result);
 	}
 	
 	@GetMapping("getAllOrderByDate")
-	public DataResult<List<WorkExperience>> getAllSorted(){
-		return this.workExperienceService.getAllSorted();
+	public ResponseEntity<?> getAllSorted(){
+		var result = this.workExperienceService.getAllSorted();
+		if (!result.isSuccess()){
+            return ResponseEntity.badRequest().body(result);
+        }
+        return ResponseEntity.ok(result);
 	}
 }

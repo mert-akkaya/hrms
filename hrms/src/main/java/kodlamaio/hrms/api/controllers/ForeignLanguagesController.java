@@ -1,8 +1,8 @@
 package kodlamaio.hrms.api.controllers;
 
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -10,8 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import kodlamaio.hrms.business.abstracts.ForeignLanguageService;
-import kodlamaio.hrms.core.utilites.results.DataResult;
-import kodlamaio.hrms.core.utilites.results.Result;
 import kodlamaio.hrms.entities.concretes.ForeignLanguage;
 
 @RestController
@@ -26,12 +24,20 @@ public class ForeignLanguagesController {
 	}
 	
 	@GetMapping("/getall")
-	public DataResult<List<ForeignLanguage>> getAll(){
-		return this.foreignLanguageService.getAll();
+	public ResponseEntity<?> getAll(){
+		var result = this.foreignLanguageService.getAll();
+		if (!result.isSuccess()){
+            return ResponseEntity.badRequest().body(result);
+        }
+        return ResponseEntity.ok(result);
 	}
 	
 	@PostMapping("/add")
-	public Result add(@RequestBody ForeignLanguage foreignLanguage) {
-		return this.foreignLanguageService.add(foreignLanguage);
+	public ResponseEntity<?> add(@RequestBody ForeignLanguage foreignLanguage) {
+		var result = this.foreignLanguageService.add(foreignLanguage);
+		if (!result.isSuccess()){
+            return ResponseEntity.badRequest().body(result);
+        }
+        return ResponseEntity.ok(result);
 	}
 }

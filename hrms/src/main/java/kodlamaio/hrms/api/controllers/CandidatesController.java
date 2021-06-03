@@ -1,8 +1,8 @@
 package kodlamaio.hrms.api.controllers;
 
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -10,8 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import kodlamaio.hrms.business.abstracts.CandidateService;
-import kodlamaio.hrms.core.utilites.results.DataResult;
-import kodlamaio.hrms.core.utilites.results.Result;
 import kodlamaio.hrms.entities.concretes.Candidate;
 
 @RestController
@@ -26,12 +24,20 @@ public class CandidatesController {
 	}
 	
 	@GetMapping("/getall")
-	public DataResult<List<Candidate>> getAll(){
-		return this.candidateService.getAll();
+	public ResponseEntity<?> getAll(){
+		var result = this.candidateService.getAll();
+		if (!result.isSuccess()){
+            return ResponseEntity.badRequest().body(result);
+        }
+        return ResponseEntity.ok(result);
 	}
 	
 	@PostMapping("/add")
-	public Result add(@RequestBody Candidate candidate) {
-		return this.candidateService.add(candidate);
+	public ResponseEntity<?> add(@RequestBody Candidate candidate) {
+		var result = this.candidateService.add(candidate);
+		if (!result.isSuccess()){
+            return ResponseEntity.badRequest().body(result);
+        }
+        return ResponseEntity.ok(result);
 	}
 }

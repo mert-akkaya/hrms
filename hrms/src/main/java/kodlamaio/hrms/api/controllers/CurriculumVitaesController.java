@@ -1,6 +1,5 @@
 package kodlamaio.hrms.api.controllers;
 
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import kodlamaio.hrms.business.abstracts.CurriculumVitaeService;
-import kodlamaio.hrms.core.utilites.results.DataResult;
 import kodlamaio.hrms.core.utilites.results.Result;
 import kodlamaio.hrms.entities.concretes.CurriculumVitae;
 
@@ -29,13 +27,21 @@ public class CurriculumVitaesController {
 	}
 	
 	@GetMapping("/getall")
-	public DataResult<List<CurriculumVitae>> getAll(){
-		return this.curriculumVitaeService.getAll();
+	public ResponseEntity<?> getAll(){
+		var result = this.curriculumVitaeService.getAll();
+		if (!result.isSuccess()){
+            return ResponseEntity.badRequest().body(result);
+        }
+        return ResponseEntity.ok(result);
 	}
 	
 	@PostMapping("/add")
-	public Result add(@RequestBody CurriculumVitae curriculumVitae) {
-		return this.curriculumVitaeService.add(curriculumVitae);
+	public ResponseEntity<?> add(@RequestBody CurriculumVitae curriculumVitae) {
+		var result = this.curriculumVitaeService.add(curriculumVitae);
+		if (!result.isSuccess()){
+            return ResponseEntity.badRequest().body(result);
+        }
+        return ResponseEntity.ok(result);
 	}
 	
 	@PostMapping("/uploadimage")
@@ -52,5 +58,12 @@ public class CurriculumVitaesController {
         return  ResponseEntity.ok(result);
 		
 	}
-	
+	@GetMapping("/getbycandidateid")
+    public ResponseEntity<?> getByCandidateId(int id){
+        var result = this.curriculumVitaeService.getByCandidateId(id);
+        if (!result.isSuccess()){
+            return ResponseEntity.badRequest().body(result);
+        }
+        return ResponseEntity.ok(result);
+    }
 }

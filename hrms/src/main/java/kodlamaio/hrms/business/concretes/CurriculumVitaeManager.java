@@ -50,4 +50,9 @@ public class CurriculumVitaeManager implements CurriculumVitaeService {
 		return new SuccessResult("added");
 		
 	}
+
+	@Override
+	public DataResult<List<CurriculumVitae>> getByCandidateId(int id) {
+		return new SuccessDataResult<List<CurriculumVitae>>(this.curriculumVitaeDao.getByCandidate_Id(id));
+	}
 }

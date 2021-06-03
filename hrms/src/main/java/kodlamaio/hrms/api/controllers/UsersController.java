@@ -1,15 +1,13 @@
 package kodlamaio.hrms.api.controllers;
 
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import kodlamaio.hrms.business.abstracts.UserService;
-import kodlamaio.hrms.core.utilites.results.DataResult;
-import kodlamaio.hrms.entities.concretes.User;
 
 @RestController
 @RequestMapping("/api/users")
@@ -23,7 +21,11 @@ public class UsersController {
 	}
 	
 	@GetMapping("/getall")
-	public DataResult<List<User>> getAll(){
-		return this.userService.getAll();
+	public ResponseEntity<?> getAll(){
+		var result = this.userService.getAll();
+		if (!result.isSuccess()){
+            return ResponseEntity.badRequest().body(result);
+        }
+        return ResponseEntity.ok(result);
 	}
 }
