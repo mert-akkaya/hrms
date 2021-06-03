@@ -8,6 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -33,6 +35,8 @@ public class ForeignLanguage {
 	@JoinColumn(name="language_id")
 	private Language language;
 	
+	@Min(1)
+	@Max(5)
 	@Column(name="level")
 	private char level;
 }

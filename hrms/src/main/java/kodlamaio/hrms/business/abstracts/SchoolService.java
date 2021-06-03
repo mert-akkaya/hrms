@@ -9,5 +9,8 @@ import kodlamaio.hrms.entities.concretes.School;
 public interface SchoolService {
 
 	DataResult<List<School>> getAll();
+	
+	DataResult<List<School>> getAllSorted();
+	
 	Result add(School school);
 }

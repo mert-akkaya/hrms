@@ -9,34 +9,29 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import kodlamaio.hrms.business.abstracts.SchoolService;
+import kodlamaio.hrms.business.abstracts.ForeignLanguageService;
 import kodlamaio.hrms.core.utilites.results.DataResult;
 import kodlamaio.hrms.core.utilites.results.Result;
-import kodlamaio.hrms.entities.concretes.School;
+import kodlamaio.hrms.entities.concretes.ForeignLanguage;
 
 @RestController
-@RequestMapping("api/schools")
-public class SchoolsController {
+@RequestMapping("api/foreignlanguages")
+public class ForeignLanguagesController {
 
-	private SchoolService schoolService;
+	private ForeignLanguageService foreignLanguageService;
 	
 	@Autowired
-	public SchoolsController(SchoolService schoolService) {
-		this.schoolService = schoolService;
+	public ForeignLanguagesController(ForeignLanguageService foreignLanguageService) {
+		this.foreignLanguageService = foreignLanguageService;
 	}
 	
 	@GetMapping("/getall")
-	public DataResult<List<School>> getAll(){
-		return this.schoolService.getAll();
+	public DataResult<List<ForeignLanguage>> getAll(){
+		return this.foreignLanguageService.getAll();
 	}
 	
 	@PostMapping("/add")
-	public Result add(@RequestBody School school) {
-		return this.schoolService.add(school);
-	}
-	
-	@GetMapping("getAllOrderByDate")
-	public DataResult<List<School>> getAllSorted(){
-		return this.schoolService.getAllSorted();
+	public Result add(@RequestBody ForeignLanguage foreignLanguage) {
+		return this.foreignLanguageService.add(foreignLanguage);
 	}
 }

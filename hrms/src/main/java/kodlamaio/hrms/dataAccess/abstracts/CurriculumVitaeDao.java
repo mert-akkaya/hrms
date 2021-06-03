@@ -6,4 +6,5 @@ import kodlamaio.hrms.entities.concretes.CurriculumVitae;
 
 public interface CurriculumVitaeDao extends JpaRepository<CurriculumVitae, Integer> {
 
+	CurriculumVitae getById(int id);
 }
