@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import kodlamaio.hrms.business.abstracts.JobAdvertisementService;
 import kodlamaio.hrms.core.utilites.results.DataResult;
+import kodlamaio.hrms.core.utilites.results.ErrorDataResult;
 import kodlamaio.hrms.core.utilites.results.Result;
 import kodlamaio.hrms.core.utilites.results.SuccessDataResult;
 import kodlamaio.hrms.core.utilites.results.SuccessResult;
@@ -49,6 +50,15 @@ public class JobAdvertisementManager implements JobAdvertisementService {
 		result.setActive(false);
 		this.jobAdvertisementDao.save(result);
 		return new SuccessResult();
+	}
+
+	@Override
+	public DataResult<JobAdvertisement> getById(int id) {
+		var result = this.jobAdvertisementDao.getById(id);
+		if (result==null) {
+			return new ErrorDataResult<JobAdvertisement>("Job Advertisement is not found");
+		}
+		return new SuccessDataResult<JobAdvertisement>(result,"Success");
 	}
 	
 	

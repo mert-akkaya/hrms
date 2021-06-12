@@ -3,6 +3,7 @@ package kodlamaio.hrms.api.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -13,6 +14,7 @@ import kodlamaio.hrms.business.abstracts.JobAdvertisementService;
 
 @RestController
 @RequestMapping("/api/jobadvertisements")
+@CrossOrigin
 public class JobAdvertisementsController {
 
 	private JobAdvertisementService jobAdvertisementService;
@@ -59,6 +61,14 @@ public class JobAdvertisementsController {
 	@GetMapping("/changeStatus")
 	public ResponseEntity<?> changeStatus(@RequestParam int id) {
 		var result = this.jobAdvertisementService.changeStatus(id);
+		if (!result.isSuccess()){
+            return ResponseEntity.badRequest().body(result);
+        }
+        return ResponseEntity.ok(result);
+	}
+	@GetMapping("/getById")
+	public ResponseEntity<?> getById(@RequestParam int id){
+		var result = this.jobAdvertisementService.getById(id);
 		if (!result.isSuccess()){
             return ResponseEntity.badRequest().body(result);
         }
