@@ -1,5 +1,8 @@
 package kodlamaio.hrms.business.concretes;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,6 +62,15 @@ public class JobAdvertisementManager implements JobAdvertisementService {
 			return new ErrorDataResult<JobAdvertisement>("Job Advertisement is not found");
 		}
 		return new SuccessDataResult<JobAdvertisement>(result,"Success");
+	}
+
+	@Override
+	public Result add(JobAdvertisement jobAdvertisement) {
+		var date = LocalDate.now();
+		jobAdvertisement.setCreateDate(date);
+		this.jobAdvertisementDao.save(jobAdvertisement);
+		return new SuccessResult("Success");
+		
 	}
 	
 	

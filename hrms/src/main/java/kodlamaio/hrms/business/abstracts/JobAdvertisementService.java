@@ -13,6 +13,7 @@ public interface JobAdvertisementService {
 	DataResult<List<JobAdvertisement>> getByIsActiveTrueOrderByApplicationDeadlineDesc();
 	DataResult<List<JobAdvertisement>> getByIsActiveTrueAndCompanyName(String companyName);
 	DataResult<JobAdvertisement> getById(int id);
+	Result add(JobAdvertisement jobAdvertisement);
 	
 	Result changeStatus(int id);
 }
