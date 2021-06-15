@@ -97,6 +97,15 @@ public class JobAdvertisementsController {
 		return ResponseEntity.ok(result);
 	}
 	
+	@PostMapping("/delete")
+	public ResponseEntity<?> delete(@RequestBody JobAdvertisement jobAdvertisement){
+		var result = this.jobAdvertisementService.delete(jobAdvertisement);
+		if(!result.isSuccess()) {
+			return ResponseEntity.badRequest().body(result);
+		}
+		return ResponseEntity.ok(result);
+	}
+	
 	@ExceptionHandler(DataIntegrityViolationException.class)
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
 	public kodlamaio.hrms.core.utilites.results.DataResult<Object> handleValidationException(DataIntegrityViolationException exceptions){

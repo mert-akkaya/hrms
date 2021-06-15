@@ -50,7 +50,7 @@ public class JobAdvertisementManager implements JobAdvertisementService {
 	@Override
 	public Result changeStatus(int id) {
 		var result =  this.jobAdvertisementDao.getById(id);
-		result.setActive(false);
+		result.setActive(true);
 		this.jobAdvertisementDao.save(result);
 		return new SuccessResult();
 	}
@@ -71,6 +71,12 @@ public class JobAdvertisementManager implements JobAdvertisementService {
 		this.jobAdvertisementDao.save(jobAdvertisement);
 		return new SuccessResult("Success");
 		
+	}
+
+	@Override
+	public Result delete(JobAdvertisement jobAdvertisement) {
+		this.jobAdvertisementDao.delete(jobAdvertisement);
+		return new SuccessResult("Success");
 	}
 	
 	

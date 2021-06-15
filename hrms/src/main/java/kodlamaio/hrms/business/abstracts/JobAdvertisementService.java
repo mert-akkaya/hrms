@@ -14,6 +14,7 @@ public interface JobAdvertisementService {
 	DataResult<List<JobAdvertisement>> getByIsActiveTrueAndCompanyName(String companyName);
 	DataResult<JobAdvertisement> getById(int id);
 	Result add(JobAdvertisement jobAdvertisement);
+	Result delete(JobAdvertisement jobAdvertisement);
 	
 	Result changeStatus(int id);
 }
