@@ -53,4 +53,10 @@ public class CandidateManager implements CandidateService {
 		return new SuccessDataResult<Candidate>(this.candidateDao.getByIdentityNumber(identityNumber));
 	}
 
+	@Override
+	public Result update(Candidate candidate) {
+		this.candidateDao.save(candidate);
+		return new SuccessResult("Success");
+	}
+
 }

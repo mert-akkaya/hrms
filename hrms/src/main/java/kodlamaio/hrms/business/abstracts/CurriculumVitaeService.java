@@ -12,7 +12,8 @@ import kodlamaio.hrms.entities.concretes.CurriculumVitae;
 public interface CurriculumVitaeService {
 
 	DataResult<List<CurriculumVitae>> getAll();
-	DataResult<List<CurriculumVitae>> getByCandidateId(int id);
+	DataResult<CurriculumVitae> getByCandidateId(int id);
 	Result uploadPhoto(int curriculumVitaeId,MultipartFile multipartFile) throws IOException;
 	Result add(CurriculumVitae curriculumVitae);
+	Result update(CurriculumVitae curriculumVitae);
 }

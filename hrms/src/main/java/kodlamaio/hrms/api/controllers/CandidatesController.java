@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -37,6 +38,15 @@ public class CandidatesController {
 	@PostMapping("/add")
 	public ResponseEntity<?> add(@RequestBody Candidate candidate) {
 		var result = this.candidateService.add(candidate);
+		if (!result.isSuccess()){
+            return ResponseEntity.badRequest().body(result);
+        }
+        return ResponseEntity.ok(result);
+	}
+	
+	@PutMapping("/update")
+	public ResponseEntity<?> update(@RequestBody Candidate candidate) {
+		var result = this.candidateService.update(candidate);
 		if (!result.isSuccess()){
             return ResponseEntity.badRequest().body(result);
         }

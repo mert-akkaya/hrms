@@ -11,5 +11,5 @@ public interface CurriculumVitaeDao extends JpaRepository<CurriculumVitae, Integ
 
 	CurriculumVitae getById(int id);
 	
-	List<CurriculumVitae> getByCandidate_Id(int id);
+	CurriculumVitae getByCandidate_Id(int id);
 }

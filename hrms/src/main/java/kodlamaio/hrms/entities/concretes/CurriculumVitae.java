@@ -46,19 +46,19 @@ public class CurriculumVitae {
 	@Column(name="cover_letter")
 	private String coverLetter;
 	
-	@JsonIgnore
+	
 	@OneToMany(mappedBy = "curriculumVitae")
 	private List<School> schools;
 	
-	@JsonIgnore
+	
 	@OneToMany(mappedBy = "curriculumVitae")
 	private List<WorkExperience> workExperiences;
 	
-	@JsonIgnore
+	
 	@OneToMany(mappedBy = "curriculumVitae")
 	private List<Abilitiy> abilities;
 	
-	@JsonIgnore
+	
 	@OneToMany(mappedBy = "curriculumVitae")
 	private List<ForeignLanguage> foreignLanguages;
 }

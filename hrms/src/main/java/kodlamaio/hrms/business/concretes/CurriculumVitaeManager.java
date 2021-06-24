@@ -52,7 +52,15 @@ public class CurriculumVitaeManager implements CurriculumVitaeService {
 	}
 
 	@Override
-	public DataResult<List<CurriculumVitae>> getByCandidateId(int id) {
-		return new SuccessDataResult<List<CurriculumVitae>>(this.curriculumVitaeDao.getByCandidate_Id(id));
+	public DataResult<CurriculumVitae> getByCandidateId(int id) {
+		return new SuccessDataResult<CurriculumVitae>(this.curriculumVitaeDao.getByCandidate_Id(id));
+	}
+
+	@Override
+	public Result update(CurriculumVitae curriculumVitae) {
+		
+		this.curriculumVitaeDao.save(curriculumVitae);
+		return new SuccessResult("Success");
+		
 	}
 }
