@@ -15,6 +15,7 @@ import kodlamaio.hrms.core.utilites.results.SuccessDataResult;
 import kodlamaio.hrms.core.utilites.results.SuccessResult;
 import kodlamaio.hrms.dataAccess.abstracts.CandidateDao;
 import kodlamaio.hrms.entities.concretes.Candidate;
+import kodlamaio.hrms.entities.concretes.CurriculumVitae;
 
 @Service
 public class CandidateManager implements CandidateService {
@@ -57,6 +58,11 @@ public class CandidateManager implements CandidateService {
 	public Result update(Candidate candidate) {
 		this.candidateDao.save(candidate);
 		return new SuccessResult("Success");
+	}
+
+	@Override
+	public DataResult<Candidate> getById(int id) {
+		return new SuccessDataResult<Candidate>(this.candidateDao.getById(id));
 	}
 
 }

@@ -38,5 +38,14 @@ public class SchoolManager implements SchoolService {
 		Sort sort = Sort.by(Sort.Direction.DESC,"graduateYear");
 		return new SuccessDataResult<List<School>>(this.schoolDao.findAll(sort));
 	}
+	@Override
+	public DataResult<List<School>> getAllByCurriculumVitae(int candidateId) {
+		return new SuccessDataResult<List<School>>(this.schoolDao.getAllByCurriculumVitae_Candidate_Id(candidateId));
+	}
+	@Override
+	public Result update(School school) {
+		this.schoolDao.save(school);
+		return new SuccessResult("success");
+	}
 
 }

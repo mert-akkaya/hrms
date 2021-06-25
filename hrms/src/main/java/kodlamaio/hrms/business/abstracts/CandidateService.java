@@ -11,6 +11,8 @@ public interface CandidateService {
 
 	DataResult<List<Candidate>> getAll();
 	
+	DataResult<Candidate> getById(int id);
+	
 	Result add(Candidate candidate);
 	
 	Result update(Candidate candidate);

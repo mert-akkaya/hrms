@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -47,18 +48,22 @@ public class CurriculumVitae {
 	private String coverLetter;
 	
 	
-	@OneToMany(mappedBy = "curriculumVitae")
+	@OneToMany(mappedBy = "curriculumVitae",fetch = FetchType.LAZY)
+	@JsonIgnore
 	private List<School> schools;
 	
 	
 	@OneToMany(mappedBy = "curriculumVitae")
+	@JsonIgnore
 	private List<WorkExperience> workExperiences;
 	
 	
 	@OneToMany(mappedBy = "curriculumVitae")
+	@JsonIgnore
 	private List<Abilitiy> abilities;
 	
 	
 	@OneToMany(mappedBy = "curriculumVitae")
+	@JsonIgnore
 	private List<ForeignLanguage> foreignLanguages;
 }
