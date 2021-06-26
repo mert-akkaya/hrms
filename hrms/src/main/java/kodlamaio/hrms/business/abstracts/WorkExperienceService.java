@@ -11,6 +11,9 @@ public interface WorkExperienceService  {
 	 DataResult<List<WorkExperience>> getAll();
 	 
 	 DataResult<List<WorkExperience>> getAllSorted();
+	 
+	 DataResult<List<WorkExperience>> getAllByCurriculumVitaeIdOrderByFinishDateDesc(int curriculumVitaeId);
 
 	 Result add(WorkExperience workExperience);
+	 Result update(WorkExperience workExperience);
 }

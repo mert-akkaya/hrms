@@ -11,7 +11,7 @@ import kodlamaio.hrms.core.utilites.results.Result;
 import kodlamaio.hrms.core.utilites.results.SuccessDataResult;
 import kodlamaio.hrms.core.utilites.results.SuccessResult;
 import kodlamaio.hrms.dataAccess.abstracts.AbilityDao;
-import kodlamaio.hrms.entities.concretes.Abilitiy;
+import kodlamaio.hrms.entities.concretes.Ability;
 
 @Service
 public class AbilityManager implements AbilityService {
@@ -23,14 +23,23 @@ public class AbilityManager implements AbilityService {
 		this.abilityDao = abilityDao;
 	}
 	@Override
-	public DataResult<List<Abilitiy>> getAll() {
-		return new SuccessDataResult<List<Abilitiy>>(this.abilityDao.findAll());
+	public DataResult<List<Ability>> getAll() {
+		return new SuccessDataResult<List<Ability>>(this.abilityDao.findAll());
 	}
 
 	@Override
-	public Result add(Abilitiy abilitiy) {
+	public Result add(Ability abilitiy) {
 		this.abilityDao.save(abilitiy);
 		return new SuccessResult("Ability added");
+	}
+	@Override
+	public Result update(Ability abilitiy) {
+		this.abilityDao.save(abilitiy);
+		return new SuccessResult("Ability added");
+	}
+	@Override
+	public DataResult<List<Ability>> getAllByCurriculumVitaeId(int curriculumVitaeId) {
+		return new SuccessDataResult<List<Ability>>(this.abilityDao.getAllByCurriculumVitaeId(curriculumVitaeId));
 	}
 
 }

@@ -9,5 +9,8 @@ import kodlamaio.hrms.entities.concretes.ForeignLanguage;
 public interface ForeignLanguageService {
 
 	DataResult<List<ForeignLanguage>> getAll();
+	
+	DataResult<List<ForeignLanguage>> getAllByCurriculumVitaeId(int curriculumVitaeId);
 	Result add(ForeignLanguage foreignLanguage);
+	Result update(ForeignLanguage foreignLanguage);
 }

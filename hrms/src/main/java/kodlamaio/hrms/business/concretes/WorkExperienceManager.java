@@ -1,5 +1,6 @@
 package kodlamaio.hrms.business.concretes;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,4 +41,16 @@ public class WorkExperienceManager implements WorkExperienceService {
 		return new SuccessDataResult<List<WorkExperience>>(this.workExperienceDao.findAll(sort));
 	}
 
+	@Override
+	public Result update(WorkExperience workExperience) {
+		this.workExperienceDao.save(workExperience);
+		return new SuccessResult("success");
+	}
+
+	@Override
+	public DataResult<List<WorkExperience>> getAllByCurriculumVitaeIdOrderByFinishDateDesc(int curriculumVitaeId) {
+		return new SuccessDataResult<List<WorkExperience>>(this.workExperienceDao.getAllByCurriculumVitaeIdOrderByFinishDateDesc(curriculumVitaeId));
+	}
+
+	
 }

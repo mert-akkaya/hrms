@@ -60,7 +60,7 @@ public class CurriculumVitae {
 	
 	@OneToMany(mappedBy = "curriculumVitae")
 	@JsonIgnore
-	private List<Abilitiy> abilities;
+	private List<Ability> abilities;
 	
 	
 	@OneToMany(mappedBy = "curriculumVitae")

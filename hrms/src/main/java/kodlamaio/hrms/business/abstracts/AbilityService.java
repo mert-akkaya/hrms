@@ -4,10 +4,16 @@ import java.util.List;
 
 import kodlamaio.hrms.core.utilites.results.DataResult;
 import kodlamaio.hrms.core.utilites.results.Result;
-import kodlamaio.hrms.entities.concretes.Abilitiy;
+import kodlamaio.hrms.entities.concretes.Ability;
 
 public interface AbilityService {
 
-	DataResult<List<Abilitiy>> getAll();
-	Result add(Abilitiy abilitiy);
+	DataResult<List<Ability>> getAll();
+	
+	DataResult<List<Ability>> getAllByCurriculumVitaeId(int curriculumVitaeId);
+	
+	Result add(Ability abilitiy);
+	Result update(Ability abilitiy);
+	
+	
 }

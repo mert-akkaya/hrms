@@ -7,7 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import kodlamaio.hrms.business.abstracts.AbilityService;
 import kodlamaio.hrms.business.abstracts.CurriculumVitaeService;
+import kodlamaio.hrms.business.abstracts.ForeignLanguageService;
+import kodlamaio.hrms.business.abstracts.SchoolService;
+import kodlamaio.hrms.business.abstracts.WorkExperienceService;
 import kodlamaio.hrms.core.utilites.image.ImageService;
 import kodlamaio.hrms.core.utilites.results.DataResult;
 import kodlamaio.hrms.core.utilites.results.Result;
@@ -15,17 +19,26 @@ import kodlamaio.hrms.core.utilites.results.SuccessDataResult;
 import kodlamaio.hrms.core.utilites.results.SuccessResult;
 import kodlamaio.hrms.dataAccess.abstracts.CurriculumVitaeDao;
 import kodlamaio.hrms.entities.concretes.CurriculumVitae;
+import kodlamaio.hrms.entities.dtos.CurriculumVitaeDto;
 
 @Service
 public class CurriculumVitaeManager implements CurriculumVitaeService {
 
 	private CurriculumVitaeDao curriculumVitaeDao;
 	private ImageService imageService;
+	private SchoolService schoolService;
+	private AbilityService abilityService;
+	private ForeignLanguageService foreignLanguageService;
+	private WorkExperienceService workExperienceService;
 	
 	@Autowired
-	public CurriculumVitaeManager(CurriculumVitaeDao curriculumVitaeDao,ImageService imageService) {
+	public CurriculumVitaeManager(CurriculumVitaeDao curriculumVitaeDao,ImageService imageService,SchoolService schoolService,AbilityService abilityService,ForeignLanguageService foreignLanguageService,WorkExperienceService workExperienceService) {
 		this.curriculumVitaeDao= curriculumVitaeDao;
 		this.imageService = imageService;
+		this.schoolService = schoolService;
+		this.abilityService= abilityService;
+		this.foreignLanguageService = foreignLanguageService;
+		this.workExperienceService = workExperienceService;
 	}
 
 	@Override
@@ -62,5 +75,16 @@ public class CurriculumVitaeManager implements CurriculumVitaeService {
 		this.curriculumVitaeDao.save(curriculumVitae);
 		return new SuccessResult("Success");
 		
+	}
+
+	@Override
+	public DataResult<CurriculumVitaeDto> getByDto(int curriculumVitaeId) {
+		CurriculumVitaeDto curriculumVitaeDto = new CurriculumVitaeDto();
+		curriculumVitaeDto.setAbilities(this.abilityService.getAllByCurriculumVitaeId(curriculumVitaeId).getData());
+		curriculumVitaeDto.setForeignLanguages(this.foreignLanguageService.getAllByCurriculumVitaeId(curriculumVitaeId).getData());
+		curriculumVitaeDto.setSchools(this.schoolService.getAllByCurriculumVitae(curriculumVitaeId).getData());
+		curriculumVitaeDto.setWorkExperiences(this.workExperienceService.getAllByCurriculumVitaeIdOrderByFinishDateDesc(curriculumVitaeId).getData());
+		
+		return new SuccessDataResult<CurriculumVitaeDto>(curriculumVitaeDto);
 	}
 }
