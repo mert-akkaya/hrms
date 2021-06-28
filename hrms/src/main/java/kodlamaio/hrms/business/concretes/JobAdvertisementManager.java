@@ -6,6 +6,8 @@ import java.time.ZonedDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import kodlamaio.hrms.business.abstracts.JobAdvertisementService;
@@ -78,6 +80,31 @@ public class JobAdvertisementManager implements JobAdvertisementService {
 		this.jobAdvertisementDao.delete(jobAdvertisement);
 		return new SuccessResult("Success");
 	}
+
+	@Override
+	public DataResult<List<JobAdvertisement>> getAllByCityIdAndEmploymentTypeId(int cityId, int employmentTypeId) {
+		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.getAllByIsActiveTrueAndCityIdAndEmploymentTypeId(cityId, employmentTypeId));
+	}
+
+	@Override
+	public DataResult<List<JobAdvertisement>> getAllByIsActiveTrueAndCityId(int cityId) {
+		
+		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.getAllByIsActiveTrueAndCityId(cityId));
+	}
+
+	@Override
+	public DataResult<List<JobAdvertisement>> getAllByIsActiveTrueAndEmploymentTypeId(int employmentTypeId) {
+		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.getAllByIsActiveTrueAndEmploymentTypeId(employmentTypeId));
+	}
+
+	
+	@Override
+	public DataResult<List<JobAdvertisement>> getByIsActiveTrue(int pageNo,int pageSize) {
+		Pageable pageable = PageRequest.of(pageNo-1, pageSize);
+		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.getByIsActiveTrue(pageable));
+	}
+
+	
 	
 	
 }

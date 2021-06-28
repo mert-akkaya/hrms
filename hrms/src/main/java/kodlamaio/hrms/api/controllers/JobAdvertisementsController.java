@@ -47,6 +47,15 @@ public class JobAdvertisementsController {
         return ResponseEntity.ok(result);
 	}
 	
+	@GetMapping("/getByİsActiveTruePageable")
+	public ResponseEntity<?> getByIsActiveTrue(@RequestParam int pageNo,int pageSize){
+		var result = this.jobAdvertisementService.getByIsActiveTrue(pageNo, pageSize);
+		if (!result.isSuccess()){
+            return ResponseEntity.badRequest().body(result);
+        }
+        return ResponseEntity.ok(result);
+	}
+	
 	@GetMapping("/getByIsActiveTrue")
 	public ResponseEntity<?> getByIsActiveTrue(){
 		var result = this.jobAdvertisementService.getByIsActiveTrue();
@@ -55,6 +64,7 @@ public class JobAdvertisementsController {
         }
         return ResponseEntity.ok(result);
 	}
+	
 	@GetMapping("/getByIsActiveTrueOrderByApplicationDeadlineDesc")
 	public ResponseEntity<?> getByIsActiveTrueOrderByApplicationDeadlineDesc(){
 		
@@ -64,6 +74,7 @@ public class JobAdvertisementsController {
         }
         return ResponseEntity.ok(result);
 	}
+	
 	@GetMapping("/getByIsActiveTrueAndCompanyName")
 	public ResponseEntity<?> getByIsActiveTrueAndCompanyName(@RequestParam String companyName){
 		var result = this.jobAdvertisementService.getByIsActiveTrueAndCompanyName(companyName);
@@ -72,6 +83,7 @@ public class JobAdvertisementsController {
         }
         return ResponseEntity.ok(result);
 	}
+	
 	@GetMapping("/changeStatus")
 	public ResponseEntity<?> changeStatus(@RequestParam int id) {
 		var result = this.jobAdvertisementService.changeStatus(id);
@@ -80,6 +92,16 @@ public class JobAdvertisementsController {
         }
         return ResponseEntity.ok(result);
 	}
+	
+	@GetMapping("/getAllByCityIdAndEmploymentTypeId")
+	public ResponseEntity<?> getAllByCityIdAndEmploymentTypeId(@RequestParam int cityId,int employmentTypeId) {
+		var result = this.jobAdvertisementService.getAllByCityIdAndEmploymentTypeId(cityId, employmentTypeId);
+		if (!result.isSuccess()){
+            return ResponseEntity.badRequest().body(result);
+        }
+        return ResponseEntity.ok(result);
+	}
+	
 	@GetMapping("/getById")
 	public ResponseEntity<?> getById(@RequestParam int id){
 		var result = this.jobAdvertisementService.getById(id);
@@ -88,6 +110,26 @@ public class JobAdvertisementsController {
         }
         return ResponseEntity.ok(result);
 	}
+	
+	@GetMapping("/getAllByCityId")
+	public ResponseEntity<?> getAllByIsActiveTrueAndCityId(@RequestParam int cityId){
+		var result = this.jobAdvertisementService.getAllByIsActiveTrueAndCityId(cityId);
+		if (!result.isSuccess()){
+            return ResponseEntity.badRequest().body(result);
+        }
+        return ResponseEntity.ok(result);
+	}
+	
+	@GetMapping("/getAllByEmploymentTypeId")
+	public ResponseEntity<?> getAllByIsActiveTrueAndEmploymentTypeId(@RequestParam int employmentTypeId){
+		var result = this.jobAdvertisementService.getAllByIsActiveTrueAndEmploymentTypeId(employmentTypeId);
+		if (!result.isSuccess()){
+            return ResponseEntity.badRequest().body(result);
+        }
+        return ResponseEntity.ok(result);
+	}
+	
+	
 	@PostMapping("/add")
 	public ResponseEntity<?> add(@RequestBody JobAdvertisement jobAdvertisement){
 		var result = this.jobAdvertisementService.add(jobAdvertisement);
