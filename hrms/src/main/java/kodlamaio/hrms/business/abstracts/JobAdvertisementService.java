@@ -15,9 +15,9 @@ public interface JobAdvertisementService {
 	DataResult<List<JobAdvertisement>> getByIsActiveTrue(int pageNo,int pageSize);
 	DataResult<List<JobAdvertisement>> getByIsActiveTrueOrderByApplicationDeadlineDesc();
 	DataResult<List<JobAdvertisement>> getByIsActiveTrueAndCompanyName(String companyName);
-	DataResult<List<JobAdvertisement>> getAllByCityIdAndEmploymentTypeId(int cityId,int employmentTypeId);
-	DataResult<List<JobAdvertisement>> getAllByIsActiveTrueAndCityId(int cityId);
-	DataResult<List<JobAdvertisement>> getAllByIsActiveTrueAndEmploymentTypeId(int employmentTypeId);
+	DataResult<List<JobAdvertisement>> getAllByCityIdAndEmploymentTypeId(int cityId,int employmentTypeId,int pageNo,int pageSize);
+	DataResult<List<JobAdvertisement>> getAllByIsActiveTrueAndCityId(int cityId,int pageNo,int pageSize);
+	DataResult<List<JobAdvertisement>> getAllByIsActiveTrueAndEmploymentTypeId(int employmentTypeId,int pageNo,int pageSize);
 	DataResult<JobAdvertisement> getById(int id);
 	Result add(JobAdvertisement jobAdvertisement);
 	Result delete(JobAdvertisement jobAdvertisement);

@@ -49,6 +49,10 @@ public class Candidate extends User {
 	@JsonIgnore
 	private List<CurriculumVitae> curriculumVitaes;
 	
+	@OneToMany(mappedBy = "candidate")
+	@JsonIgnore
+	private List<Favorite> favorites;
+	
 	 public Candidate(String email,String password,String firstName, String lastName, String identityNumber, int  birthYear) {
 	        super(email,password);
 	        this.firstName = firstName;

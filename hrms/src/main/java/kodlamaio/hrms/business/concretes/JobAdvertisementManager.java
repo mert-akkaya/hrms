@@ -82,19 +82,21 @@ public class JobAdvertisementManager implements JobAdvertisementService {
 	}
 
 	@Override
-	public DataResult<List<JobAdvertisement>> getAllByCityIdAndEmploymentTypeId(int cityId, int employmentTypeId) {
-		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.getAllByIsActiveTrueAndCityIdAndEmploymentTypeId(cityId, employmentTypeId));
+	public DataResult<List<JobAdvertisement>> getAllByCityIdAndEmploymentTypeId(int cityId, int employmentTypeId,int pageNo,int pageSize) {
+		Pageable pageable = PageRequest.of(pageNo-1, pageSize);
+		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.getAllByIsActiveTrueAndCityIdAndEmploymentTypeId(cityId, employmentTypeId,pageable));
 	}
 
 	@Override
-	public DataResult<List<JobAdvertisement>> getAllByIsActiveTrueAndCityId(int cityId) {
-		
-		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.getAllByIsActiveTrueAndCityId(cityId));
+	public DataResult<List<JobAdvertisement>> getAllByIsActiveTrueAndCityId(int cityId,int pageNo,int pageSize) {
+		Pageable pageable = PageRequest.of(pageNo-1, pageSize);
+		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.getAllByIsActiveTrueAndCityId(cityId,pageable));
 	}
 
 	@Override
-	public DataResult<List<JobAdvertisement>> getAllByIsActiveTrueAndEmploymentTypeId(int employmentTypeId) {
-		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.getAllByIsActiveTrueAndEmploymentTypeId(employmentTypeId));
+	public DataResult<List<JobAdvertisement>> getAllByIsActiveTrueAndEmploymentTypeId(int employmentTypeId,int pageNo,int pageSize) {
+		Pageable pageable = PageRequest.of(pageNo-1, pageSize);
+		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.getAllByIsActiveTrueAndEmploymentTypeId(employmentTypeId,pageable));
 	}
 
 	

@@ -17,10 +17,10 @@ public interface JobAdvertisementDao extends JpaRepository<JobAdvertisement, Int
 	
 	List<JobAdvertisement> getByIsActiveTrueAndEmployer_CompanyName(String companyName);
 	
-	List<JobAdvertisement> getAllByIsActiveTrueAndCityIdAndEmploymentTypeId(int cityId,int employmentTypeId);
+	List<JobAdvertisement> getAllByIsActiveTrueAndCityIdAndEmploymentTypeId(int cityId,int employmentTypeId,Pageable pageable);
 
-	List<JobAdvertisement> getAllByIsActiveTrueAndCityId(int cityId);
+	List<JobAdvertisement> getAllByIsActiveTrueAndCityId(int cityId,Pageable pageable);
 	
-	List<JobAdvertisement> getAllByIsActiveTrueAndEmploymentTypeId(int employmentTypeId);
+	List<JobAdvertisement> getAllByIsActiveTrueAndEmploymentTypeId(int employmentTypeId,Pageable pageable);
 	JobAdvertisement getById(int id);
 }
