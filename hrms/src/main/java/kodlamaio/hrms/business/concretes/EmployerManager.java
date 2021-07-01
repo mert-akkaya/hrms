@@ -43,4 +43,15 @@ public class EmployerManager implements EmployerService {
 		
 	}
 
+	@Override
+	public DataResult<Employer> getById(int id) {
+		return new SuccessDataResult<Employer>(this.employerDao.getById(id));
+	}
+
+	@Override
+	public Result update(Employer employer) {
+		this.employerDao.save(employer);
+		return new SuccessResult();
+	}
+
 }

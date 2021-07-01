@@ -33,6 +33,7 @@ public class Employer extends User {
 	
 	
 	@OneToMany(mappedBy = "employer")
+	@JsonIgnore
 	private List<JobAdvertisement> jobAdvertisements;
 	
 	 public Employer(String email,String password,String companyName, String webAddress, String phoneNumber) {
