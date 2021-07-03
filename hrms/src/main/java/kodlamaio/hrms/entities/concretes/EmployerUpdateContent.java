@@ -41,4 +41,7 @@ public class EmployerUpdateContent {
 	@Column(name="content",columnDefinition = "json")
 	@Type(type = "json")
 	private Employer content;
+	
+	@Column(name="status")
+	private boolean status;
 }

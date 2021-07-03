@@ -10,7 +10,11 @@ public interface EmployerUpdateContentService {
 
 	DataResult<List<EmployerUpdateContent>> getAll();
 	
-	DataResult<EmployerUpdateContent> findByEmployerId(int id);
+	DataResult<EmployerUpdateContent> getByEmployerId(int id);
+	
+	DataResult<EmployerUpdateContent> getByStatusFalseEmployerId(int id);
+	
+	DataResult<List<EmployerUpdateContent>> getAllByStatusFalse();
 	
 	Result add(EmployerUpdateContent employerUpdateContent);
 	

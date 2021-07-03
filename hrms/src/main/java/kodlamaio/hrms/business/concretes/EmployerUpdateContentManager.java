@@ -33,20 +33,20 @@ public class EmployerUpdateContentManager implements EmployerUpdateContentServic
 	}
 
 	@Override
-	public DataResult<EmployerUpdateContent> findByEmployerId(int id) {
-		return new SuccessDataResult<EmployerUpdateContent>(this.employerUpdateContentDao.findByEmployerId(id));
+	public DataResult<EmployerUpdateContent> getByEmployerId(int id) {
+		return new SuccessDataResult<EmployerUpdateContent>(this.employerUpdateContentDao.getByEmployerId(id));
 	}
 
 	@Override
 	public Result add(EmployerUpdateContent employerUpdateContent) {
-		
+		employerUpdateContent.setStatus(false);
 		this.employerUpdateContentDao.save(employerUpdateContent);
 		return new SuccessResult();
 	}
 	@Override
 	public Result confirmContent(int employerId) {
 		Employer employer = this.employerService.getById(employerId).getData();
-		EmployerUpdateContent content = this.employerUpdateContentDao.findByEmployerId(employerId);
+		EmployerUpdateContent content = this.employerUpdateContentDao.getByStatusFalseAndEmployerId(employerId);
 		
 		if(content!=null) {
 			var result = checkAndSetUpdate(employer, content);
@@ -74,11 +74,19 @@ public class EmployerUpdateContentManager implements EmployerUpdateContentServic
 		if (content.getContent().getWebAddress()!=null) {
 			employer.setWebAddress(content.getContent().getWebAddress());
 		}
-		
+		content.setStatus(true);
 		this.employerService.update(employer);
 		return new SuccessResult();
 		
 		
+	}
+	@Override
+	public DataResult<EmployerUpdateContent> getByStatusFalseEmployerId(int id) {
+		return new SuccessDataResult<EmployerUpdateContent>(this.employerUpdateContentDao.getByStatusFalseAndEmployerId(id));
+	}
+	@Override
+	public DataResult<List<EmployerUpdateContent>> getAllByStatusFalse() {
+		return new SuccessDataResult<List<EmployerUpdateContent>>(this.employerUpdateContentDao.getAllByStatusFalse());
 	}
 	
 	
