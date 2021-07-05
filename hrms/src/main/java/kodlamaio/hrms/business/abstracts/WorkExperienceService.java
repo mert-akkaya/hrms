@@ -16,4 +16,5 @@ public interface WorkExperienceService  {
 
 	 Result add(WorkExperience workExperience);
 	 Result update(WorkExperience workExperience);
+	 Result delete(int workExperienceId);
 }

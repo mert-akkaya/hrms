@@ -41,5 +41,10 @@ public class AbilityManager implements AbilityService {
 	public DataResult<List<Ability>> getAllByCurriculumVitaeId(int curriculumVitaeId) {
 		return new SuccessDataResult<List<Ability>>(this.abilityDao.getAllByCurriculumVitaeId(curriculumVitaeId));
 	}
+	@Override
+	public Result delete(int abilityId) {
+		this.abilityDao.deleteById(abilityId);
+		return new SuccessResult();
+	}
 
 }

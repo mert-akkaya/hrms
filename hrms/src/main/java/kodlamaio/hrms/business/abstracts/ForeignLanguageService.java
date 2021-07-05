@@ -13,4 +13,5 @@ public interface ForeignLanguageService {
 	DataResult<List<ForeignLanguage>> getAllByCurriculumVitaeId(int curriculumVitaeId);
 	Result add(ForeignLanguage foreignLanguage);
 	Result update(ForeignLanguage foreignLanguage);
+	Result delete (int foreignLanguageId);
 }

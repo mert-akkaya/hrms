@@ -71,4 +71,13 @@ public class WorkExperiencesController {
         }
         return ResponseEntity.ok(result);
 	}
+	
+	@PostMapping("/delete")
+	public ResponseEntity<?> delete(@RequestParam int workExperienceId) {
+		var result = this.workExperienceService.delete(workExperienceId);
+		if (!result.isSuccess()){
+            return ResponseEntity.badRequest().body(result);
+        }
+        return ResponseEntity.ok(result);
+	}
 }

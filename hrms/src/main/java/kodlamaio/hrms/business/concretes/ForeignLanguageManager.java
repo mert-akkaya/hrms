@@ -44,4 +44,10 @@ public class ForeignLanguageManager implements ForeignLanguageService {
 		return new SuccessResult("Foreign language updated");
 	}
 
+	@Override
+	public Result delete(int foreignLanguageId) {
+		this.foreignLanguageDao.deleteById(foreignLanguageId);
+		return new SuccessResult();
+	}
+
 }

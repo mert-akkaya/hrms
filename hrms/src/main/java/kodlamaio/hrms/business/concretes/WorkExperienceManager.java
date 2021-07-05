@@ -52,5 +52,11 @@ public class WorkExperienceManager implements WorkExperienceService {
 		return new SuccessDataResult<List<WorkExperience>>(this.workExperienceDao.getAllByCurriculumVitaeIdOrderByFinishDateDesc(curriculumVitaeId));
 	}
 
+	@Override
+	public Result delete(int workExperienceId) {
+		this.workExperienceDao.deleteById(workExperienceId);
+		return new SuccessResult();
+	}
+
 	
 }

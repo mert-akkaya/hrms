@@ -16,4 +16,5 @@ public interface SchoolService {
 	
 	Result add(School school);
 	Result update (School school);
+	Result delete (int schoolId);
 }

@@ -14,6 +14,6 @@ public interface AbilityService {
 	
 	Result add(Ability abilitiy);
 	Result update(Ability abilitiy);
-	
+	Result delete(int abilityId);
 	
 }

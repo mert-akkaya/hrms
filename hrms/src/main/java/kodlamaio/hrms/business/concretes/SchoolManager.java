@@ -47,5 +47,10 @@ public class SchoolManager implements SchoolService {
 		this.schoolDao.save(school);
 		return new SuccessResult("success");
 	}
+	@Override
+	public Result delete(int schoolId) {
+		this.schoolDao.deleteById(schoolId);;
+		return new SuccessResult("success");
+	}
 
 }

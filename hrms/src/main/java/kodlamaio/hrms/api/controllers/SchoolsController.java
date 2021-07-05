@@ -36,14 +36,6 @@ public class SchoolsController {
         return ResponseEntity.ok(result);
 	}
 	
-	@PostMapping("/add")
-	public ResponseEntity<?> add(@RequestBody School school) {
-		var result = this.schoolService.add(school);
-		if (!result.isSuccess()){
-            return ResponseEntity.badRequest().body(result);
-        }
-        return ResponseEntity.ok(result);
-	}
 	
 	@GetMapping("getAllOrderByDate")
 	public ResponseEntity<?> getAllSorted(){
@@ -63,9 +55,27 @@ public class SchoolsController {
         return ResponseEntity.ok(result);
 	}
 	
+	@PostMapping("/add")
+	public ResponseEntity<?> add(@RequestBody School school) {
+		var result = this.schoolService.add(school);
+		if (!result.isSuccess()){
+            return ResponseEntity.badRequest().body(result);
+        }
+        return ResponseEntity.ok(result);
+	}
+	
 	@PutMapping("update")
 	public ResponseEntity<?> update(@RequestBody School school){
 		var result = this.schoolService.update(school);
+		if (!result.isSuccess()){
+            return ResponseEntity.badRequest().body(result);
+        }
+        return ResponseEntity.ok(result);
+	}
+	
+	@PostMapping("/delete")
+	public ResponseEntity<?> delete(@RequestParam int schoolId) {
+		var result = this.schoolService.delete(schoolId);
 		if (!result.isSuccess()){
             return ResponseEntity.badRequest().body(result);
         }

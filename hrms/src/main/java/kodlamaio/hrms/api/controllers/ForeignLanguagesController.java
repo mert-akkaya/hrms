@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import kodlamaio.hrms.business.abstracts.ForeignLanguageService;
@@ -56,6 +57,15 @@ public class ForeignLanguagesController {
 	@PutMapping("/update")
 	public ResponseEntity<?> update(@RequestBody ForeignLanguage foreignLanguage) {
 		var result = this.foreignLanguageService.update(foreignLanguage);
+		if (!result.isSuccess()){
+            return ResponseEntity.badRequest().body(result);
+        }
+        return ResponseEntity.ok(result);
+	}
+	
+	@PostMapping("/delete")
+	public ResponseEntity<?> delete(@RequestParam int foreignLanguageId) {
+		var result = this.foreignLanguageService.delete(foreignLanguageId);
 		if (!result.isSuccess()){
             return ResponseEntity.badRequest().body(result);
         }

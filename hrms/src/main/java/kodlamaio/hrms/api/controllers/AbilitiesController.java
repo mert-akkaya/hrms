@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import kodlamaio.hrms.business.abstracts.AbilityService;
@@ -55,6 +56,15 @@ public class AbilitiesController {
 	@PutMapping("/update")
 	public ResponseEntity<?> update(@RequestBody Ability abilitiy){
 		var result = this.abilityService.update(abilitiy);
+		if (!result.isSuccess()){
+            return ResponseEntity.badRequest().body(result);
+        }
+        return ResponseEntity.ok(result);
+	}
+	
+	@PostMapping("/delete")
+	public ResponseEntity<?> delete(@RequestParam int abilityId){
+		var result = this.abilityService.delete(abilityId);
 		if (!result.isSuccess()){
             return ResponseEntity.badRequest().body(result);
         }
