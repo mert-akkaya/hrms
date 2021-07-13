@@ -18,6 +18,7 @@ import kodlamaio.hrms.core.utilites.results.SuccessDataResult;
 import kodlamaio.hrms.core.utilites.results.SuccessResult;
 import kodlamaio.hrms.dataAccess.abstracts.JobAdvertisementDao;
 import kodlamaio.hrms.entities.concretes.JobAdvertisement;
+import kodlamaio.hrms.entities.dtos.JobAdvertismentFilterDto;
 
 @Service
 public class JobAdvertisementManager implements JobAdvertisementService {
@@ -81,29 +82,17 @@ public class JobAdvertisementManager implements JobAdvertisementService {
 		return new SuccessResult("Success");
 	}
 
-	@Override
-	public DataResult<List<JobAdvertisement>> getAllByCityIdAndEmploymentTypeId(int cityId, int employmentTypeId,int pageNo,int pageSize) {
-		Pageable pageable = PageRequest.of(pageNo-1, pageSize);
-		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.getAllByIsActiveTrueAndCityIdAndEmploymentTypeId(cityId, employmentTypeId,pageable));
-	}
-
-	@Override
-	public DataResult<List<JobAdvertisement>> getAllByIsActiveTrueAndCityId(int cityId,int pageNo,int pageSize) {
-		Pageable pageable = PageRequest.of(pageNo-1, pageSize);
-		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.getAllByIsActiveTrueAndCityId(cityId,pageable));
-	}
-
-	@Override
-	public DataResult<List<JobAdvertisement>> getAllByIsActiveTrueAndEmploymentTypeId(int employmentTypeId,int pageNo,int pageSize) {
-		Pageable pageable = PageRequest.of(pageNo-1, pageSize);
-		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.getAllByIsActiveTrueAndEmploymentTypeId(employmentTypeId,pageable));
-	}
-
 	
 	@Override
 	public DataResult<List<JobAdvertisement>> getByIsActiveTrue(int pageNo,int pageSize) {
 		Pageable pageable = PageRequest.of(pageNo-1, pageSize);
 		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.getByIsActiveTrue(pageable));
+	}
+
+	@Override
+	public DataResult<List<JobAdvertisement>> getAllByIsActiveTrueAndFilter(JobAdvertismentFilterDto advertismentFilterDto, int pageNo, int pageSize) {
+	     Pageable pageable = PageRequest.of(pageNo-1, pageSize);
+	     return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.getAllByFilter(advertismentFilterDto, pageable).getContent(),this.jobAdvertisementDao.getAllByFilter(advertismentFilterDto, pageable).getTotalElements()+"");
 	}
 
 	

@@ -43,7 +43,7 @@ public class AuthManager implements AuthService {
 			
 		 	UserForMernisValidateDto userForMernisValidateDto = new UserForMernisValidateDto(candidateForRegisterDto.getFirstName(),candidateForRegisterDto.getLastName(),candidateForRegisterDto.getBirthYear(),candidateForRegisterDto.getIdentityNumber());
 		 	
-		 	if(!this.verificationService.validate(userForMernisValidateDto)) {
+		 	if(!this.verificationService.checkIfRealPerson(userForMernisValidateDto)) {
 		 		return new ErrorResult("Mernis validate failed");
 		 	}
 		 

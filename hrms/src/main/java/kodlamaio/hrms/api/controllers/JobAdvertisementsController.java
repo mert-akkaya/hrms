@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import kodlamaio.hrms.business.abstracts.JobAdvertisementService;
 import kodlamaio.hrms.entities.concretes.JobAdvertisement;
+import kodlamaio.hrms.entities.dtos.JobAdvertismentFilterDto;
 
 
 
@@ -93,14 +94,6 @@ public class JobAdvertisementsController {
         return ResponseEntity.ok(result);
 	}
 	
-	@GetMapping("/getAllByCityIdAndEmploymentTypeId")
-	public ResponseEntity<?> getAllByCityIdAndEmploymentTypeId(@RequestParam int cityId,int employmentTypeId,int pageNo,int pageSize) {
-		var result = this.jobAdvertisementService.getAllByCityIdAndEmploymentTypeId(cityId, employmentTypeId, pageNo, pageSize);
-		if (!result.isSuccess()){
-            return ResponseEntity.badRequest().body(result);
-        }
-        return ResponseEntity.ok(result);
-	}
 	
 	@GetMapping("/getById")
 	public ResponseEntity<?> getById(@RequestParam int id){
@@ -111,24 +104,15 @@ public class JobAdvertisementsController {
         return ResponseEntity.ok(result);
 	}
 	
-	@GetMapping("/getAllByCityId")
-	public ResponseEntity<?> getAllByIsActiveTrueAndCityId(@RequestParam int cityId,int pageNo,int pageSize){
-		var result = this.jobAdvertisementService.getAllByIsActiveTrueAndCityId(cityId, pageNo, pageSize);
+	
+	@PostMapping("/getAllByIsActiveTrueAndFilter") 
+	public ResponseEntity<?> getAllByIsActiveTrueAndFilter(@RequestParam int pageNo,int pageSize, @RequestBody JobAdvertismentFilterDto jobAdvertismentFilterDto){
+		var result = this.jobAdvertisementService.getAllByIsActiveTrueAndFilter(jobAdvertismentFilterDto, pageNo, pageSize);
 		if (!result.isSuccess()){
             return ResponseEntity.badRequest().body(result);
         }
         return ResponseEntity.ok(result);
 	}
-	
-	@GetMapping("/getAllByEmploymentTypeId")
-	public ResponseEntity<?> getAllByIsActiveTrueAndEmploymentTypeId(@RequestParam int employmentTypeId,int pageNo,int pageSize){
-		var result = this.jobAdvertisementService.getAllByIsActiveTrueAndEmploymentTypeId(employmentTypeId, pageNo, pageSize);
-		if (!result.isSuccess()){
-            return ResponseEntity.badRequest().body(result);
-        }
-        return ResponseEntity.ok(result);
-	}
-	
 	
 	@PostMapping("/add")
 	public ResponseEntity<?> add(@RequestBody JobAdvertisement jobAdvertisement){

@@ -5,5 +5,5 @@ import kodlamaio.hrms.entities.dtos.UserForMernisValidateDto;
 
 public interface VerificationService {
 
-	boolean validate(UserForMernisValidateDto userForMernisValidate);
+	boolean checkIfRealPerson(UserForMernisValidateDto userForMernisValidate);
 }
