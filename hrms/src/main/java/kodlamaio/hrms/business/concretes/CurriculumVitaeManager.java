@@ -65,8 +65,8 @@ public class CurriculumVitaeManager implements CurriculumVitaeService {
 	}
 
 	@Override
-	public DataResult<CurriculumVitae> getByCandidateId(int id) {
-		return new SuccessDataResult<CurriculumVitae>(this.curriculumVitaeDao.getByCandidate_Id(id));
+	public DataResult<List<CurriculumVitae>> getByCandidateId(int id) {
+		return new SuccessDataResult<List<CurriculumVitae>>(this.curriculumVitaeDao.getByCandidate_Id(id));
 	}
 
 	@Override
@@ -86,5 +86,10 @@ public class CurriculumVitaeManager implements CurriculumVitaeService {
 		curriculumVitaeDto.setWorkExperiences(this.workExperienceService.getAllByCurriculumVitaeIdOrderByFinishDateDesc(curriculumVitaeId).getData());
 		
 		return new SuccessDataResult<CurriculumVitaeDto>(curriculumVitaeDto);
+	}
+
+	@Override
+	public DataResult<CurriculumVitae> getById(int id) {
+		return new SuccessDataResult<CurriculumVitae>(this.curriculumVitaeDao.getById(id));
 	}
 }
