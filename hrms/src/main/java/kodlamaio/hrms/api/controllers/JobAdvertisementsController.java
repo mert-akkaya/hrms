@@ -132,14 +132,5 @@ public class JobAdvertisementsController {
 		return ResponseEntity.ok(result);
 	}
 	
-	@ExceptionHandler(DataIntegrityViolationException.class)
-	@ResponseStatus(HttpStatus.BAD_REQUEST)
-	public kodlamaio.hrms.core.utilites.results.DataResult<Object> handleValidationException(DataIntegrityViolationException exceptions){
-		
-
-		var errors= exceptions.getMessage();
-		
-		kodlamaio.hrms.core.utilites.results.ErrorDataResult<Object> errorss = new kodlamaio.hrms.core.utilites.results.ErrorDataResult<Object>(errors,"hatalar");
-		return errorss;
-	}
+	
 }
