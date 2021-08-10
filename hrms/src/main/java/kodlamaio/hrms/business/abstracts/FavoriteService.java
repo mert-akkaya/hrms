@@ -14,7 +14,7 @@ public interface FavoriteService {
 	DataResult<Favorite> findByCandidateIdAndJobAdvertisementId(int candidateId,int jobAdvertismentId);
 	
 	Result add(Favorite favorite);
-	Result remove(Favorite favorite);
+	Result remove(int favoriteId);
 	
 	
 	

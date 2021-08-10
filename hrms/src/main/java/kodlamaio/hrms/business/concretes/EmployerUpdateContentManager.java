@@ -57,6 +57,22 @@ public class EmployerUpdateContentManager implements EmployerUpdateContentServic
 		}
 		return new ErrorResult("update request not found");
 	}
+
+	@Override
+	public DataResult<EmployerUpdateContent> getByStatusFalseEmployerId(int id) {
+		return new SuccessDataResult<EmployerUpdateContent>(this.employerUpdateContentDao.getByStatusFalseAndEmployerId(id));
+	}
+	
+	@Override
+	public DataResult<List<EmployerUpdateContent>> getAllByStatusFalse() {
+		return new SuccessDataResult<List<EmployerUpdateContent>>(this.employerUpdateContentDao.getAllByStatusFalse());
+	}
+	
+	@Override
+	public Result delete(int id) {
+		this.employerUpdateContentDao.deleteById(id);
+		return new SuccessResult("Delete Success");
+	}
 	
 	private Result checkAndSetUpdate(Employer employer , EmployerUpdateContent content) {
 		if (content.getContent().getCompanyName()!=null) {
@@ -79,14 +95,6 @@ public class EmployerUpdateContentManager implements EmployerUpdateContentServic
 		return new SuccessResult();
 		
 		
-	}
-	@Override
-	public DataResult<EmployerUpdateContent> getByStatusFalseEmployerId(int id) {
-		return new SuccessDataResult<EmployerUpdateContent>(this.employerUpdateContentDao.getByStatusFalseAndEmployerId(id));
-	}
-	@Override
-	public DataResult<List<EmployerUpdateContent>> getAllByStatusFalse() {
-		return new SuccessDataResult<List<EmployerUpdateContent>>(this.employerUpdateContentDao.getAllByStatusFalse());
 	}
 	
 	

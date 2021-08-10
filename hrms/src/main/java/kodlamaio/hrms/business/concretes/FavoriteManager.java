@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import kodlamaio.hrms.business.abstracts.FavoriteService;
 import kodlamaio.hrms.core.utilites.results.DataResult;
+import kodlamaio.hrms.core.utilites.results.ErrorResult;
 import kodlamaio.hrms.core.utilites.results.Result;
 import kodlamaio.hrms.core.utilites.results.SuccessDataResult;
 import kodlamaio.hrms.core.utilites.results.SuccessResult;
@@ -35,19 +36,31 @@ public class FavoriteManager implements FavoriteService {
 
 	@Override
 	public Result add(Favorite favorite) {
+		var result = checkFavorite(favorite);
+		if (!result.isSuccess()) {
+			return new ErrorResult();
+		}
 		this.favoriteDao.save(favorite);
 		return new SuccessResult();
 	}
 
 	@Override
-	public Result remove(Favorite favorite) {
-		this.favoriteDao.delete(favorite);
+	public Result remove(int favoriteId) {
+		this.favoriteDao.deleteById(favoriteId);
 		return new SuccessResult();
 	}
 
 	@Override
 	public DataResult<Favorite> findByCandidateIdAndJobAdvertisementId(int candidateId, int jobAdvertismentId) {
 		return new SuccessDataResult<Favorite>(this.favoriteDao.findByCandidateIdAndJobAdvertisementId(candidateId, jobAdvertismentId));
+	}
+	
+	private Result checkFavorite(Favorite favorite) {
+		var result = this.findByCandidateIdAndJobAdvertisementId(favorite.getCandidate().getId(), favorite.getJobAdvertisement().getId());
+		if (result.getData() != null) {
+			return new ErrorResult();
+		}
+		return new SuccessResult();
 	}
 
 }

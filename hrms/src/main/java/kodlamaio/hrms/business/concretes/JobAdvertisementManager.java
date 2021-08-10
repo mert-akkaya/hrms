@@ -93,12 +93,6 @@ public class JobAdvertisementManager implements JobAdvertisementService {
 
 	@Override
 	public DataResult<List<JobAdvertisement>> getAllByIsActiveTrueAndFilter(JobAdvertismentFilterDto advertismentFilterDto, int pageNo, int pageSize) {
-	    try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		Pageable pageable = PageRequest.of(pageNo-1, pageSize);
 	     return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.getAllByFilter(advertismentFilterDto, pageable).getContent(),this.jobAdvertisementDao.getAllByFilter(advertismentFilterDto, pageable).getTotalElements()+"");
 	}

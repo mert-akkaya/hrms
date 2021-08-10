@@ -19,4 +19,6 @@ public interface EmployerUpdateContentService {
 	Result add(EmployerUpdateContent employerUpdateContent);
 	
 	Result confirmContent(int employerId);
+	
+	Result delete(int id);
 }

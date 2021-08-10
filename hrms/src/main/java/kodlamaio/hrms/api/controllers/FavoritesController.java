@@ -63,8 +63,8 @@ public class FavoritesController {
 	}
 	
 	@PostMapping("/delete")
-	public ResponseEntity<?> delete(@RequestBody Favorite favorite){
-		var result = this.favoriteService.remove(favorite);
+	public ResponseEntity<?> delete(@RequestParam int favoriteId){
+		var result = this.favoriteService.remove(favoriteId);
 		if (!result.isSuccess()){
             return ResponseEntity.badRequest().body(result);
         }

@@ -79,4 +79,13 @@ public class EmployerUpdateContentsController {
         }
         return ResponseEntity.ok(result);
 	}
+	
+	@PostMapping("/delete")
+	public ResponseEntity<?> delete(@RequestParam int id){
+		var result = this.employerUpdateContentService.delete(id);
+		if (!result.isSuccess()) {
+			return ResponseEntity.badRequest().body(result);
+		}
+		return ResponseEntity.ok(result);
+	} 
 }
